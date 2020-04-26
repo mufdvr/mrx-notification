@@ -1,47 +1,46 @@
-import React from "react";
-
-export interface INotificationProps {
-  /** prefix class name for notification container */
-  prefixCls?: string;
-  /** additional style for notification container. */
-  style?: object;
-  /** function returning html node which will act as notification container */
-  getContainer?(): HTMLElement;
+export declare type NotificationPlacement = 'topLeft' | 'topRight' | 'topCenter' | 'bottomLeft' | 'bottomRight';
+export declare type IconType = 'success' | 'info' | 'error' | 'warning';
+export interface ConfigProps {
+    top?: number;
+    bottom?: number;
+    duration?: number;
+    placement?: NotificationPlacement;
+    getContainer?: () => HTMLElement;
+    closeIcon?: React.ReactNode;
 }
-
-export interface INoticeProps {
-  /** content of notice */
-  content: React.ReactNode;
-  /** id of this notice */
-  key?: string;
-  /** whether show close button */
-  closable?: boolean;
-  /** called when notice close */
-  onClose?(): void;
-  /** after duration of time, this notice will disappear.(seconds) */
-  duration?: number;
-  /** additional style for single notice node. */
-  style?: object;
-  /** max notices show, drop first notice if exceed limit */
-  maxCount?: number;
-  /** specific the close icon. */
-  closeIcon?: React.ReactNode;
+export interface ArgsProps {
+    message: React.ReactNode;
+    description?: React.ReactNode;
+    btn?: React.ReactNode;
+    key?: string;
+    onClose?: () => void;
+    duration?: number | null;
+    icon?: React.ReactNode;
+    placement?: NotificationPlacement;
+    style?: React.CSSProperties;
+    prefixCls?: string;
+    className?: string;
+    readonly type?: IconType;
+    onClick?: () => void;
+    top?: number;
+    bottom?: number;
+    getContainer?: () => HTMLElement;
+    closeIcon?: React.ReactNode;
 }
-
-export interface INotification {
-  notice(props: INoticeProps): void;
-  /**
-   * remove single notice with specified key
-   * @param key id of this notice
-   */
-  removeNotice(key: string): void;
-  /** destroy current notification */
-  destroy(): void;
+export interface NotificationInstance {
+    success(args: ArgsProps): void;
+    error(args: ArgsProps): void;
+    info(args: ArgsProps): void;
+    warning(args: ArgsProps): void;
+    open(args: ArgsProps): void;
 }
-
-/**
- * create new notification instance
- * @param props notification props
- * @param callback 
- */
-export function newInstance(props: INotificationProps, callback: (n: INotification) => void): void;
+export interface NotificationApi extends NotificationInstance {
+    warn(args: ArgsProps): void;
+    close(key: string): void;
+    config(options: ConfigProps): void;
+    destroy(): void;
+    useNotification: () => [NotificationInstance, React.ReactElement];
+}
+// eslint-disable-next-line no-underscore-dangle
+declare const _default: NotificationApi;
+export default _default;

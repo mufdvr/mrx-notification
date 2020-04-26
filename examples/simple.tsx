@@ -3,7 +3,7 @@ import React from 'react';
 import notification from '../src';
 import '../assets/index.css';
 
-function simpleFn() {
+const simpleFn = () => {
   notification.error({
     message: 'test',
     description: 'des',
@@ -11,7 +11,7 @@ function simpleFn() {
       console.log('simple close');
     },
   });
-}
+};
 
 const Demo = () => (
   <div>

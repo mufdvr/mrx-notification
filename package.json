@@ -1,6 +1,6 @@
 {
   "name": "mrx-notification",
-  "version": "4.0.1",
+  "version": "4.0.2",
   "description": "notification ui component for react",
   "engines": {
     "node": ">=8.x"
